@@ -53,9 +53,9 @@
         function clickToDial_button() {
             console.log('process click to dial via button');
             var url = "https://api.mypurecloud.de/api/v2/conversations/calls";
-            //var number = document.getElementById("number").value;
-            var number = "492119695516"               
-            //alert(number);
+            var number = document.getElementById("phonenoval").value;
+            //var number = "492119695516"               
+            console.log(number);
             var parameters = {"phoneNumber": number, "callFromQueueId": "1133afa3-5bd1-4419-a3fc-1f485b5c95bf"};
             console.log(parameters);
             console.log("aman");
