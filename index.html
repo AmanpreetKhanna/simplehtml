@@ -5,13 +5,6 @@
 
             var phoneno = '';
 
-            // function clicktoDial(){
-            //     console.log("callgenesys");
-            // }
-            function clicktoEnd(){
-                console.log("Endgenesys");
-            }
-            
             jQuery(document).ready(function() {
                 jQuery('.numinp').click(function(){
                     phoneno = phoneno + jQuery(this).html();
@@ -22,39 +15,39 @@
 
         <script>
           // Implicit grant credentials
-          const CLIENT_ID = '8691f11d-50ab-4e53-88d1-4483dc116d73';
+          //const CLIENT_ID = '8691f11d-50ab-4e53-88d1-4483dc116d73';
           // Genesys Cloud environment
-          const ENVIRONMENT = 'mypurecloud.de';
-          function getParameterByName(name) {
-                        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                        var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-                        results = regex.exec(location.hash);
-                        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-          }
-          if(window.location.hash) {
-            console.log(location.hash);
-            var token = getParameterByName('access_token');
-            //alert(token);
-            $.ajax({
-                url: `https://api.${ENVIRONMENT}/api/v2/users/me`,
-                type: "GET",
-                beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'bearer ' + token);},
-                success: function(data) {
-                    console.log(data);
-                }
-            });
-            location.hash=''
-        }
-        else {
-            var queryStringData = {              
-            response_type : "token",              
-            client_id : CLIENT_ID,
-            redirect_uri : "https://amanpreetkhanna.github.io/simplehtml/index.html"
-            //"https://fairdinand.eu/m/mrs_crm.html"
-            //https://development.loyally.nl/fdgenesyscti/default/index.html
-            }
-            window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
-        }
+          //const ENVIRONMENT = 'mypurecloud.de';
+        //   function getParameterByName(name) {
+        //                 name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        //                 var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
+        //                 results = regex.exec(location.hash);
+        //                 return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        //   }
+        //   if(window.location.hash) {
+        //     console.log(location.hash);
+        //     var token = getParameterByName('access_token');
+        //     //alert(token);
+        //     $.ajax({
+        //         url: `https://api.${ENVIRONMENT}/api/v2/users/me`,
+        //         type: "GET",
+        //         beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'bearer ' + token);},
+        //         success: function(data) {
+        //             console.log(data);
+        //         }
+        //     });
+        //     location.hash=''
+        // }
+        // else {
+        //     var queryStringData = {              
+        //     response_type : "token",              
+        //     client_id : CLIENT_ID,
+        //     redirect_uri : "https://amanpreetkhanna.github.io/simplehtml/index.html"
+        //     //"https://fairdinand.eu/m/mrs_crm.html"
+        //     //https://development.loyally.nl/fdgenesyscti/default/index.html
+        //     }
+        //     window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
+        // }
 
         function clickToDial_button() {
             console.log('process click to dial via button');
@@ -64,6 +57,8 @@
             //alert(number);
             var parameters = {"phoneNumber": number, "callFromQueueId": "1133afa3-5bd1-4419-a3fc-1f485b5c95bf"};
             console.log(parameters);
+            console.log("aman");
+            console.log(token);
             xmlhttp = new XMLHttpRequest();
             xmlhttp.open("POST", url, true);
             xmlhttp.setRequestHeader("Content-type", "application/json");
@@ -76,29 +71,29 @@
             xmlhttp.send(JSON.stringify(parameters));
         }
 
-        function clickToDial() {
-            console.log('process click to dial via link');
-            //alert(token);
-            var url = "https://api.mypurecloud.de/api/v2/conversations/calls";
-            var number = document.getElementById("clickToDial").textContent;
-            var parameters = {"phoneNumber": number};
-            console.log(parameters);
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("POST", url, true);               
-            xmlhttp.setRequestHeader("Content-type", "application/json");
-            xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
-            xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    cb(xmlhttp.responseText);
-                }
-            };
-            xmlhttp.send(JSON.stringify(parameters));
-        }
+        // function clickToDial() {
+        //     console.log('process click to dial via link');
+        //     //alert(token);
+        //     var url = "https://api.mypurecloud.de/api/v2/conversations/calls";
+        //     var number = document.getElementById("clickToDial").textContent;
+        //     var parameters = {"phoneNumber": number};
+        //     console.log(parameters);
+        //     xmlhttp = new XMLHttpRequest();
+        //     xmlhttp.open("POST", url, true);               
+        //     xmlhttp.setRequestHeader("Content-type", "application/json");
+        //     xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
+        //     xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
+        //         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        //             cb(xmlhttp.responseText);
+        //         }
+        //     };
+        //     xmlhttp.send(JSON.stringify(parameters));
+        // }
 
 
-        document.addEventListener('DOMContentLoaded',function(){  
-            document.getElementById("clickToDial").addEventListener("click", clickToDial);
-        })
+        // document.addEventListener('DOMContentLoaded',function(){  
+        //     document.getElementById("clickToDial").addEventListener("click", clickToDial);
+        // })
       </script>
 
 
