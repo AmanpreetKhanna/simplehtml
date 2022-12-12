@@ -14,6 +14,10 @@
         </script>
 
         <script>
+
+          let params = (new URL(document.location)).searchParams;
+          let token = params.get("q");
+          console.log(token);
           // Implicit grant credentials
           //const CLIENT_ID = '8691f11d-50ab-4e53-88d1-4483dc116d73';
           // Genesys Cloud environment
