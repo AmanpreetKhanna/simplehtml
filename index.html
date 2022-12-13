@@ -14,6 +14,14 @@
         </script>
 
         <script>
+        console.log("Amanpreet Singh");
+        console.log(window.location);
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+      });
+        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+        let value = params.param1; // "some_value"
+        console.log(value);
 
          // Implicit grant credentials
           const CLIENT_ID = '8691f11d-50ab-4e53-88d1-4483dc116d73';
@@ -43,7 +51,7 @@
             var queryStringData = {              
             response_type : "token",              
             client_id : CLIENT_ID,
-            redirect_uri : "https://amanpreetkhanna.github.io/simplehtml/index.html"
+            redirect_uri : "https://amanpreetkhanna.github.io/simplehtml?param1=123"
             //"https://fairdinand.eu/m/mrs_crm.html"
             //https://development.loyally.nl/fdgenesyscti/default/index.html
             }
@@ -71,30 +79,6 @@
             };
             xmlhttp.send(JSON.stringify(parameters));
         }
-
-        // function clickToDial() {
-        //     console.log('process click to dial via link');
-        //     //alert(token);
-        //     var url = "https://api.mypurecloud.de/api/v2/conversations/calls";
-        //     var number = document.getElementById("clickToDial").textContent;
-        //     var parameters = {"phoneNumber": number};
-        //     console.log(parameters);
-        //     xmlhttp = new XMLHttpRequest();
-        //     xmlhttp.open("POST", url, true);               
-        //     xmlhttp.setRequestHeader("Content-type", "application/json");
-        //     xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
-        //     xmlhttp.onreadystatechange = function () { //Call a function when the state changes.
-        //         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        //             cb(xmlhttp.responseText);
-        //         }
-        //     };
-        //     xmlhttp.send(JSON.stringify(parameters));
-        // }
-
-
-        // document.addEventListener('DOMContentLoaded',function(){  
-        //     document.getElementById("clickToDial").addEventListener("click", clickToDial);
-        // })
       </script>
 
 
