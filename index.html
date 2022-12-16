@@ -1,5 +1,13 @@
 <html>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+      <script>
+        console.log(window.location);
+        console.log(window.location.href)
+        console.log(window.location.hash)
+        console.log(window.location.search)
+      </script>
+      
       <script>
           const params = new Proxy(new URLSearchParams(window.location.search), {
                 get: (searchParams, prop) => searchParams.get(prop),
