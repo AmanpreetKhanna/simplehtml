@@ -2,22 +2,20 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
       <script>
-        console.log(window.location);
-        console.log(window.location.href)
-        console.log(window.location.hash)
-        console.log(window.location.search)
-      </script>
-      
-      <script>
-          const params = new Proxy(new URLSearchParams(window.location.search), {
-                get: (searchParams, prop) => searchParams.get(prop),
-              });
-
-            const paramvalue = params.param1; // "some_value"
-            const myArray = paramvalue.split("|");
-      </script>
-      <script>
-          var phoneno = myArray[1];
+        var phoneno="";
+        var token="";
+        var ticketid="";
+        const hashvalues = window.location.hash.split("&");
+        for(i in hashvalues){
+          if(hashvalues[i].includes("#access_token")){
+            token = hashvalues[i].split("=")[1];
+          }
+          if(hashvalues[i].includes("state")){
+            var _state = hashvalues[i].split("=")[1];
+            phoneno = _state.split("~")[1];
+            ticketid = _state.split("~")[0];
+          }
+        }
           jQuery(document).ready(function() {
              jQuery('#phonenoval').val(phoneno);
               jQuery('.numinp').click(function(){
@@ -31,14 +29,10 @@
             console.log('process click to dial via button');
             var url = "https://api.mypurecloud.de/api/v2/conversations/calls";
             var number = document.getElementById("phonenoval").value;
-            var token = myArray[2];
-            var ticketno = myArray[0];
-            console.log(number);
             jQuery('#phonenoval').val(number);
-
             var parameters = {"phoneNumber": number, "callFromQueueId": "1133afa3-5bd1-4419-a3fc-1f485b5c95bf"};
             console.log(parameters);
-            
+            console.log(token);
             xmlhttp = new XMLHttpRequest();
             xmlhttp.open("POST", url, true);
             xmlhttp.setRequestHeader("Content-type", "application/json");
