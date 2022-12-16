@@ -1,73 +1,36 @@
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script type="text/javascript">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script>
+          const params = new Proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) => searchParams.get(prop),
+              });
 
-            var phoneno = '';
-
-            jQuery(document).ready(function() {
-                jQuery('.numinp').click(function(){
-                    phoneno = phoneno + jQuery(this).html();
-                    jQuery('#phonenoval').val(phoneno);
-                 });
-            });
+            const paramvalue = params.param1; // "some_value"
+            const myArray = paramvalue.split("|");
+      </script>
+      <script>
+          var phoneno = myArray[1];
+          jQuery(document).ready(function() {
+             jQuery('#phonenoval').val(phoneno);
+              jQuery('.numinp').click(function(){
+                  phoneno = phoneno + jQuery(this).html();
+                  jQuery('#phonenoval').val(phoneno);
+              });
+          });
         </script>
-
         <script>
-        console.log("Amanpreet Singh");
-        console.log(window.location);
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-      });
-        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
-        let value = params.param1; // "some_value"
-        console.log(value);
-
-         // Implicit grant credentials
-          const CLIENT_ID = '8691f11d-50ab-4e53-88d1-4483dc116d73';
-         // Genesys Cloud environment
-          const ENVIRONMENT = 'mypurecloud.de';
-          function getParameterByName(name) {
-                        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                        var regex = new RegExp("[\\#&]" + name + "=([^&#]*)"),
-                        results = regex.exec(location.hash);
-                        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-          }
-          if(window.location.hash) {
-            console.log(location.hash);
-            var token = getParameterByName('access_token');
-            //alert(token);
-            $.ajax({
-                url: `https://api.${ENVIRONMENT}/api/v2/users/me`,
-                type: "GET",
-                beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'bearer ' + token);},
-                success: function(data) {
-                    console.log(data);
-                }
-            });
-            location.hash=''
-        }
-        else {
-            var queryStringData = {              
-            response_type : "token",              
-            client_id : CLIENT_ID,
-            redirect_uri : "https://amanpreetkhanna.github.io/simplehtml?param1=123"
-            //"https://fairdinand.eu/m/mrs_crm.html"
-            //https://development.loyally.nl/fdgenesyscti/default/index.html
-            }
-            window.location.replace(`https://login.${ENVIRONMENT}/oauth/authorize?` + jQuery.param(queryStringData));
-        }
-
         function clickToDial_button() {
             console.log('process click to dial via button');
             var url = "https://api.mypurecloud.de/api/v2/conversations/calls";
             var number = document.getElementById("phonenoval").value;
-            //var number = "492119695516"               
+            var token = myArray[2];
+            var ticketno = myArray[0];
             console.log(number);
+            jQuery('#phonenoval').val(number);
+
             var parameters = {"phoneNumber": number, "callFromQueueId": "1133afa3-5bd1-4419-a3fc-1f485b5c95bf"};
             console.log(parameters);
-            console.log("aman");
-            console.log(token);
+            
             xmlhttp = new XMLHttpRequest();
             xmlhttp.open("POST", url, true);
             xmlhttp.setRequestHeader("Content-type", "application/json");
@@ -79,6 +42,7 @@
             };
             xmlhttp.send(JSON.stringify(parameters));
         }
+   
       </script>
 
 
