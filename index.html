@@ -22,7 +22,7 @@
           if(hashvalues[i].includes("state")){
             var _state = hashvalues[i].split("=")[1];
             console.log(_state);
-            phoneno = decodeURIComponent(_state.split("~")[1]);
+            phoneno = decodeURIComponent(decodeURIComponent(_state.split("~")[1]));
             console.log(phoneno);
             ticketid = _state.split("~")[0];
           }
