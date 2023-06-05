@@ -13,13 +13,17 @@
         var token="";
         var ticketid="";
         const hashvalues = window.location.hash.split("&");
+            console.log(hashvalues);
+            
         for(i in hashvalues){
           if(hashvalues[i].includes("#access_token")){
             token = hashvalues[i].split("=")[1];
           }
           if(hashvalues[i].includes("state")){
             var _state = hashvalues[i].split("=")[1];
+            console.log(_state);
             phoneno = _state.split("~")[1];
+            console.log(phoneno);
             ticketid = _state.split("~")[0];
           }
         }
