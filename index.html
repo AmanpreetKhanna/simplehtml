@@ -62,9 +62,9 @@
           console.log(conversation);
           var jp = JSON.parse(conversation);
           console.log(jp.entities[0].id);
-          console.log(jp.entities[0].id.participants[0].id);
-          var conversationID = "";
-          var participantId = "";
+          console.log(jp.entities[0].participants[0].id);
+          var conversationID = jp.entities[0].id;
+          var participantId = jp.entities[0].participants[0].id;
             var url = "https://api.mypurecloud.de/api/v2/conversations/calls/" + conversationID + "/participants/" + participantId;
             var parameters = {"state":"disconnected","wrapup":{"code":"c1652da2-8cf5-4316-a81b-ddb2cd7f8801"}};
             console.log(token);
